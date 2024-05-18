@@ -33,7 +33,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
         printf("Successfully connected. Redirecting...");
         $_SESSION["CONNECTED"] = $a["admin"];
         $_SESSION["USERNAME"] = $a["username"];
-        setcookie("JSESSID", md5($a["username"]), time() + 3600, "/");
+        $session_id = bin2hex(random_bytes(32));
+        setcookie("JSESSID", $session_id, time() + 3600, "/", "", false, true);
     }
     else
     {
